@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rate My Cakes</title>
+</head>
+<body>
+  <h1>Rate My Cakes</h1>
+
+  <!-- to submit a new cake -->
+  <div class="inline form">
+    <form (submit)="createCake()">
+      <p>Submit a cake to be rated</p>
+      <hr>
+      <label for="name">Baker Name:</label>
+      <input type="text" name="name" [(ngModel)]="newCake.name"><br>
+      <label for="image">Image URL:</label>
+      <input type="text" name="image" [(ngModel)]="newCake.image"><br>
+      <button type="submit">Submit</button>
+    </form>
+    <button (click)="showWithClick()">Show all cakes!</button>
+  </div>
+
+  <!-- to rate cake -->
+  <div id="scroll_div" class="inline form">
+    <div *ngFor="let cake of allCakes" id="image_div">
+      <a (click)="showDetails(cake)"><img src="{{ cake.image }}" alt="cake" class="inline"></a>
+     
+      <form class="inline" (submit)="rateCakeForm(cake)">
+          <p id="baker">Baker: {{ cake.name }} </p>
+        <select name="rating" id="rating" [(ngModel)]="cake.newRating">
+          <option>Select a rating</option>
+          <option value="1">1 stars</option>
+          <option value="2">2 stars</option>
+          <option value="3">3 stars</option>
+          <option value="4">4 stars</option>
+          <option value="5">5 stars</option>
+        </select><br>
+        <textarea name="comment" [(ngModel)]="cake.newComment" id="comment" cols="20" rows="3"></textarea><br>
+        <button type="submit" id="rate">Rate!</button>
+      </form>
+
+      <hr>
+    </div>
+  </div>
+
+  <!-- to view details of selected cake -->
+  <app-cake *ngIf="selectedCake" [cakeToShow]="selectedCake"></app-cake>
+
+</body>
+</html>

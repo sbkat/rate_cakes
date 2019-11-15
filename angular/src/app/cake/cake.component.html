@@ -1,0 +1,16 @@
+<div id="details">
+    <img src="{{ cakeToShow.image }}" alt="cake" class="inline">
+    <div class="inline">
+    <p>Baked by: {{ cakeToShow.name }}</p>
+    <!-- <p>Average Rating:</p> -->
+    <br>
+    <p>Submitted Reviews:</p>
+    <!-- loop through ratings/comments on this cake -->
+    <div class="inline">
+        <p *ngFor="let rating of cakeToShow.rating">{{ rating }} stars -&nbsp;</p>
+    </div>
+    <div class="inline">
+        <p *ngFor="let comment of cakeToShow.comment">{{ comment }}</p>
+    </div>
+    </div>
+</div>
